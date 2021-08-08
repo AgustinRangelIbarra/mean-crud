@@ -1,29 +1,42 @@
 const employeeCtrl = {};
+const Employee = require('../models/Employee');
 
 
-employeeCtrl.getEmployees = (req, res) => {
+employeeCtrl.getEmployees = async (req, res) => {
 	console.log('worked/getEmployees');
-	res.send('getEmployees');
+	const employees = await Employee.find();
+	res.json(employees);
 }
 
-employeeCtrl.createEmployee = (req, res) => {
+
+employeeCtrl.createEmployee = async (req, res) => {
 	console.log("worked/createEmployee");
-	res.send('createEmployee');
+	const newEmployee = new Employee(req.body);
+	await newEmployee.save();
+	res.send({message: "Employee Created"});
 }
 
-employeeCtrl.getEmployee = (req, res) => {
+
+employeeCtrl.getEmployee = async (req, res) => {
 	console.log("worked/getEmployee");
-	res.send('getEmployee');
+	console.log(req.params);
+	const employeeId = req.params.id
+	const employee = await Employee.findById(employeeId);
+	res.json(employee);
 }
 
-employeeCtrl.updateEmployee = (req, res) => {
+
+employeeCtrl.updateEmployee = async (req, res) => {
 	console.log('worked/updateEmployee');
-	res.send('updateEmployee');
+	const employee = await Employee.findByIdAndUpdate(req.params.id, req.body);
+	res.json({status: "Employee updated"});
 }
 
-employeeCtrl.deleteEmployee = (req, res) => {
+
+employeeCtrl.deleteEmployee = async (req, res) => {
 	console.log("worked/deleteEmployee");
-	res.send("deleteEmployee");
+	const employee = await Employee.findByIdAndDelete(req.params.id);
+	res.json({status: "Employee Deleted"});
 }
 
 

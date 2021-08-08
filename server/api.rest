@@ -1,0 +1,27 @@
+###
+GET http://localhost:4000/api/employees
+
+###
+POST http://localhost:4000/api/employees
+Content-Type: application/json
+
+{
+	"name": "Antony",
+	"position": "Vue Dev",
+	"office": "CDMX",
+	"salary": "10000"
+}
+
+###
+GET http://localhost:4000/api/employees/610f329ec2c57b3f98e88205
+
+###
+DELETE http://localhost:4000/api/employees/610f341e65401b2e68be2fd7
+
+###
+PUT http://localhost:4000/api/employees/610f329ec2c57b3f98e88205
+Content-Type: application/json
+
+{
+	"office": "La Roma"
+}
