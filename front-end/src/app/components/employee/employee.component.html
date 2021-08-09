@@ -3,6 +3,7 @@
     <div class="card">
       <div class="card-body">
         <form #formEmployees="ngForm" (ngSubmit)="addEmployee(formEmployees)">
+          <input type="hidden" name="_id" [(ngModel)]="_employeeService.selectedEmployee._id">
           <div class="form-group">
             <input
               class="form-control"

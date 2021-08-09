@@ -32,16 +32,25 @@ export class EmployeeComponent implements OnInit {
   }
 
   addEmployee(form: NgForm): any {
-    console.log(form.value);
-
-    this._employeeService.createEmployee(form.value).subscribe(
-      (res: any) => {
-        console.log(res);
-        this.getEmployees();
-        form.reset();
-      },
-      (err: any) => console.error(err)
-    );
+    if (form.value._id) {
+      this._employeeService.updateEmployee(form.value).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.getEmployees();
+          form.reset();
+        },
+        (err: any) => console.error(err)
+      );
+    } else {
+      this._employeeService.createEmployee(form.value).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.getEmployees();
+          form.reset();
+        },
+        (err: any) => console.error(err)
+      );
+    }
   }
 
   deleteEmployee(employeeId: any): any {
@@ -58,8 +67,10 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  editEmployee(employee: any): any {
+  editEmployee(employee: IEmployee): any {
+    console.log(employee);
     this._employeeService.selectedEmployee = employee;
+
   }
 
   resetForm(formEmployee: NgForm): any {

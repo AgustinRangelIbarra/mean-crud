@@ -30,4 +30,8 @@ export class EmployeeService {
   deleteEmployee(id: string): any {
     return this.http.delete(`${this.URL_API}/${id}`);
   }
+
+  updateEmployee(employee: IEmployee): any {
+    return this.http.put(`${this.URL_API}/${employee._id}`, employee);
+  }
 }
