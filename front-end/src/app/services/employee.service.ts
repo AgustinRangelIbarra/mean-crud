@@ -6,7 +6,7 @@ import { IEmployee } from '../models/employee';
   providedIn: 'root',
 })
 export class EmployeeService {
-  URL_API = 'http://localhost:4000/api/employees';
+  URL_API = '/api/employees';
 
   employees: IEmployee[] = [];
   selectedEmployee: IEmployee = {
